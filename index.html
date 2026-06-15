@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Museo de Sitio Naval | Submarino Abtao</title>
+<link rel="icon" href="logo1.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div id="preloader">
+    <div class="loader-content">
+        <div class="submarine-wrapper">
+            <img src="icono/sub2.png" alt="Cargando..." class="sub-icon-original">
+            <div class="bubbles">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <p>Sumergiendo...</p>
+        <div class="loader-bar"></div>
+    </div>
+</div>
+
+<section class="portada">
+<!-- VIDEO FONDO -->
+<video autoplay muted loop id="bg-video">
+  <source src="bg/video.mp4" type="video/mp4">
+</video>
+
+<div id="main-header-placeholder"></div>
+
+<main>
+<!-- TEXTO PRINCIPAL -->
+<div class="hero">
+  <h1>MUSEO DE SITIO NAVAL<br>SUBMARINO ABTAO</h1>
+  <a href="#" class="btn-reserva">
+      RESERVAR
+      <i class="fa fa-chevron-right"></i>
+  </a>
+</div>
+
+<!-- REDES -->
+<div class="social">
+
+  <div class="social-item email">
+    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+    <span>Correo Electrónico</span>
+  </div>
+
+  <div class="social-item facebook">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <span>Facebook</span>
+  </div>
+
+  <div class="social-item youtube">
+    <a href="#"><i class="fab fa-youtube"></i></a>
+    <span>YouTube</span>
+  </div>
+
+  <div class="social-item instagram">
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <span>Instagram</span>
+  </div>
+
+</div>
+</section>
+
+<section class="news-section">
+    <div class="news-header">
+        <h2> NOTICIAS </h2>
+    </div>
+
+    <div class="carousel-wrapper">
+        <button class="carousel-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-btn next-btn"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="news-container">
+            <article class="news-card">
+                <img src="noticias/imagen2.png" alt="Noticia 1">
+                <div class="news-content">
+                    <h3>Visita de los cadetes de la Escuela Naval</h3>
+                    <span class="news-date"><i class="fa-regular fa-calendar-days"></i> 20 Enero 2026</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="noticias/imagen1.png" alt="Noticia 2">
+                <div class="news-content">
+                    <h3>Visita de colegio al museo de submarinos abtao</h3>
+                    <span class="news-date"><i class="fa-regular fa-calendar-days"></i> 15 Febrero 2026</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="noticias/imagen3.png" alt="Noticia 3">
+                <div class="news-content">
+                    <h3>Mantenimiento preventivo en unidades de la fuerza de submarinos</h3>
+                    <span class="news-date"><i class="fa-regular fa-calendar-days"></i> 10 Marzo 2026</span>
+                </div>
+            </article>
+
+            <article class="news-card">
+                <img src="noticias/imagen2.png" alt="Noticia 4">
+                <div class="news-content">
+                    <h3>Visita de colegio al museo de submarinos abtao</h3>
+                    <span class="news-date"><i class="fa-regular fa-calendar-days"></i> 22 Marzo 2026</span>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+<div class="separator-bar"></div>
+
+<section class="info-visita">
+    
+    <video autoplay muted loop playsinline id="bg-video-info">
+        <source src="info/mar.mov" type="video/quicktime">
+        <source src="info/mar.mp4" type="video/mp4">
+    </video>
+
+    <div class="info-bg-overlay"></div>
+    
+    <div class="container-visita">
+        
+        <div class="card-modern reveal">
+            <div class="card-icon-top">
+                <i class="fa-solid fa-clock"></i>
+            </div>
+            <h3>HORARIO DE ATENCIÓN</h3>
+            <div class="horario-content">
+                <p class="days">MIÉRCOLES — DOMINGO</p>
+                <p class="time">09:30 - 16:30 <span class="unit">HRS</span></p>
+                <p class="tag-feriado">* Incluidos feriados</p>
+            </div>
+            
+            <div class="importante-box">
+                <h4><i class="fa-solid fa-circle-exclamation"></i> Importante:</h4>
+                <p>Cámara fotográfica, gorra, gafas de sol y cortavientos.</p>
+                <p class="sub-nota">La asociación no tiene convenio con ninguna institución.</p>
+            </div>
+        </div>
+
+        <div class="card-modern reveal">
+            <div class="card-icon-top">
+                <i class="fa-solid fa-ticket"></i>
+            </div>
+            <h3>TARIFAS DE INGRESO</h3>
+            <div class="prices-list">
+                <div class="price-item"><span>Adulto</span><span class="dot-line"></span><span class="value">S/ 20.00</span></div>
+                <div class="price-item"><span>Niño <small>(5 a 11)</small></span><span class="dot-line"></span><span class="value">S/ 15.00</span></div>
+                <div class="price-item"><span>Escolar / Profesor (*)</span><span class="dot-line"></span><span class="value">S/ 10.00</span></div>
+                <!--<div class="price-item"><span>Conadis (**)</span><span class="dot-line"></span><span class="value">S/ 10.00</span></div>-->
+            </div>
+            <div class="info-footer">
+                <p>(*) Solo cuando reservan como colegio (15 días de anticipación).</p>
+                
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="asociacion-seccion reveal">
+    <div class="asociacion-container">
+        <div class="asociacion-grid">
+            
+            <div class="asociacion-logo">
+                <img src="logosub1.png" alt="Logo Asociación de Oficiales Submarinistas del Perú">
+            </div>
+
+            <div class="asociacion-info">
+                <span class="tag-institucional">Visita también</span>
+                <h3>Asociación de Oficiales Submarinistas del Perú</h3>
+                <p>
+                    Institución que preserva las tradiciones y el espíritu de la Fuerza de Submarinos, 
+                    promoviendo la historia y el desarrollo de la especialidad en nuestro país.
+                </p>
+                <a href="asociacion.html" target="_blank" class="btn-asociacion">
+                    Ir al Sitio Oficial <i class="fas fa-external-link-alt"></i>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+</main>
+
+<div id="main-footer-placeholder"></div>
+
+<a href="https://wa.me/51904755912" class="whatsapp-float" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<script>
+    const container = document.querySelector('.news-container');
+    const nextBtn = document.querySelector('.next-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+
+    nextBtn.addEventListener('click', () => {
+        container.scrollLeft += container.offsetWidth / 2;
+    });
+
+    prevBtn.addEventListener('click', () => {
+        container.scrollLeft -= container.offsetWidth / 2;
+    });
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

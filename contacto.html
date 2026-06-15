@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Museo B.A.P. Abtao</title>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  
+     <div id="main-header-placeholder"></div>
+
+    <main>
+<section class="page-intro separated-intro">
+    <div class="intro-content">
+        <h1>Contacto</h1>
+        <p>¿Tienes dudas? Estamos listos para recibirte a bordo.</p>
+    </div>
+</section>
+
+    <section class="contacto-wrapper">
+        <div class="contacto-grid">
+            
+            <div class="contacto-info">
+                <div class="info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Nuestra Ubicación</h3>
+                        <p>Av. Jorge Chávez 120, Callao, Perú.</p>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h3>Atención Telefónica</h3>
+                        <p>+51 (01) 429-0532</p>
+                        <p>Lun - Dom: 9:00 AM - 4:30 PM</p>
+                    </div>
+                </div>
+
+                <div class="mapa-box">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.44289873099!2d-77.14713!3d-12.06283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb5c55555555%3A0x633d45e055555555!2sMuseo%20Abtao!5e0!3m2!1ses!2spe!4v1710000000000" 
+                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+
+            <div class="contacto-form">
+                <h2>Envíanos un Mensaje</h2>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Nombre</label>
+                            <input type="text" placeholder="Tu nombre..." required>
+                        </div>
+                        <div class="form-group">
+                            <label>Correo</label>
+                            <input type="email" placeholder="email@ejemplo.com" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Asunto</label>
+                        <select>
+                            <option>Consultas Generales</option>
+                            <option>Reservas Escolares</option>
+                            <option>Eventos y Filmaciones</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Mensaje</label>
+                        <textarea rows="4" placeholder="¿En qué podemos ayudarte?"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary-naval">
+                        Enviar Consulta <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    </main>
+
+<div id="main-footer-placeholder"></div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>

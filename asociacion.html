@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asociación de Oficiales Submarinistas del Perú</title>
+    <link rel="icon" href="logosub1.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="asociacion-page">
+
+    <!--<div id="preloader">
+        <div class="loader-content">
+            <div class="submarine-wrapper">
+                <img src="icono/sub2.png" alt="Cargando..." class="sub-icon-original">
+                <div class="bubbles">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <p>Navegando a la Asociación...</p>
+            <div class="loader-bar"></div>
+        </div>
+    </div>-->
+
+<header class="main-header-asoc">
+      <div class="header-container-asoc">
+          
+          <div class="logo-asoc">
+              <a href="asociacion.html">
+                  <img src="logosub1.png" alt="Logo Asociación">
+              </a>
+          </div>
+          
+          <button class="menu-btn-asoc" id="menu-btn-asoc" aria-label="Abrir menú">
+              <i class="fas fa-bars"></i>
+          </button>
+
+          <nav class="main-nav-asoc" id="main-nav-asoc">
+              <ul class="nav-center">
+                  <li><a href="asociacion.html" class="active">Inicio</a></li>
+                  <li><a href="#identidad">Identidad</a></li>
+                  <li><a href="#junta">Junta Directiva</a></li>
+                  <li><a href="#contacto">Contacto</a></li>
+              </ul>
+              <ul class="nav-right only-desktop">
+                  <li><a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Volver al Museo</a></li>
+              </ul>
+          </nav>
+
+      </div>
+  </header>
+
+    <style>
+        html, body { scroll-behavior: smooth; }
+
+        .main-header-asoc {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 5%;
+            z-index: 99999 !important; /* Garantiza estar encima de capas de video o fondos */
+            background-color: rgba(7, 16, 23, 0) !important; /* Totalmente transparente al inicio */
+            border-bottom: 1px solid rgba(233, 180, 76, 0.2);
+            transition: background-color 0.4s ease, padding 0.4s ease, border-bottom 0.4s ease;
+        }
+
+        /* ESTADO ACTIVO: FUERZA EL COLOR SÓLIDO AL BAJAR EL SCROLL */
+        .main-header-asoc.scrolled {
+            background-color: #222 !important;
+            padding: 15px 5% !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            border-bottom: 1px solid rgba(233, 180, 76, 0.5);
+        }
+
+        .header-container-asoc {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LOGO CON TAMAÑO AGRANDADO */
+        .logo-asoc img {
+            height: 85px; /* Agrandado sustancialmente */
+            width: auto;
+            display: block;
+            transition: height 0.4s ease;
+        }
+
+        .main-header-asoc.scrolled .logo-asoc img {
+            height: 65px; /* Se achica ligeramente al hacer scroll para no estorbar la lectura */
+        }
+
+        /* DISTRIBUCIÓN DE MENÚS */
+        .main-nav-asoc {
+            display: flex;
+            flex-grow: 1;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 40px;
+        }
+
+        .main-nav-asoc ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-center {
+            gap: 40px;
+        }
+
+        .nav-right {
+            margin-left: 0;
+        }
+
+        .main-nav-asoc ul li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.6px;
+            transition: color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .main-nav-asoc ul li a:hover,
+        .main-nav-asoc ul li a.active {
+            color: #E9B44C !important;
+        }
+
+        /* Botón Volver al Museo */
+        .main-nav-asoc ul li a.btn-back {
+            color: #E9B44C;
+            font-weight: bold;
+            border: 1px solid #E9B44C;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .main-nav-asoc ul li a.btn-back:hover {
+            background: #E9B44C;
+            color: #071017 !important;
+        }
+
+        .menu-btn-asoc {
+            display: none;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* MÓVIL / RESPONSIVE */
+        @media (max-width: 992px) {
+            .menu-btn-asoc { display: block; }
+            
+            .main-nav-asoc {
+                position: fixed;
+                top: 110px;
+                left: 0;
+                width: 100%;
+                background: #071017;
+                flex-direction: column;
+                margin-left: 0;
+                padding: 0;
+                gap: 25px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.4s ease-in-out, padding 0.4s ease;
+            }
+
+            .main-header-asoc.scrolled .main-nav-asoc { top: 90px; }
+            .main-nav-asoc.active {
+                max-height: 450px;
+                padding: 30px 0;
+                border-bottom: 1px solid rgba(233, 180, 76, 0.3);
+            }
+
+            .main-nav-asoc ul {
+                flex-direction: column;
+                gap: 20px;
+                width: 100%;
+                text-align: center;
+            }
+            .nav-center { margin: 0; }
+        }
+    </style>
+
+  <main>
+    <section class="portada section-reveal" style="background-image: url('fotosub.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+        <div class="oscurecer-fondo"></div>
+        
+        <div class="hero-container" style="position: relative; z-index: 2; text-align: center; padding: 180px 20px 100px 20px;">
+            <h1 style="color: #ffffff; font-size: 3rem; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: bold; text-shadow: 0 4px 15px rgba(0,0,0,0.7);">
+                Asociación de Oficiales Submarinistas del Perú
+            </h1>
+            <p style="color: #cbd5e1; font-size: 1.25rem; max-width: 750px; margin: 0 auto 35px auto; line-height: 1.6; text-shadow: 0 2px 8px rgba(0,0,0,0.6);">
+                Preservando la mística, tradiciones y el legado histórico de la Fuerza de Submarinos más antigua de Sudamérica.
+            </p>
+            <a href="#identidad" class="btn-reserva" style="text-decoration: none; display: inline-block;">Conoce Nuestra Historia</a>
+        </div>
+    </section>
+
+    <section id="identidad" class="asociacion-seccion" style="padding: 80px 5%; background: linear-gradient(135deg, #071017 0%, #0d1b2a 100%);">
+        <div class="asociacion-container" style="max-width: 1200px; width: 100%;">
+            
+            <div style="text-align: center; margin-bottom: 60px;">
+                <span class="tag-institucional" style="color: #c88800; font-weight: bold; letter-spacing: 2px; text-transform: uppercase;">Valores Compartidos</span>
+                <h2 style="color: #ffffff; font-size: 2.2rem; margin-top: 10px;">Compromiso y Tradición Naval</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+                
+                <div class="asociacion-grid" style="flex-direction: column; padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid rgba(200,136,0,0.2); border-radius: 20px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: #c88800; margin-bottom: 20px;">
+                        <i class="fas fa-anchor"></i>
+                    </div>
+                    <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 15px;">Nuestra Misión</h3>
+                    <p style="color: #cbd5e1; line-height: 1.6; font-size: 1rem;">
+                        Promover y fortalecer los lazos de fraternidad, solidaridad y apoyo mutuo entre los Oficiales del Arma de Submarinos, velando por el prestigio de la especialidad y colaborando con la difusión de la historia marítima nacional.
+                    </p>
+                </div>
+
+                <div class="asociacion-grid" style="flex-direction: column; padding: 40px; background: rgba(255,255,255,0.02); border: 1px solid rgba(200,136,0,0.2); border-radius: 20px; text-align: center;">
+                    <div style="font-size: 2.5rem; color: #c88800; margin-bottom: 20px;">
+                        <i class="fas fa-compass"></i>
+                    </div>
+                    <h3 style="color: #ffffff; font-size: 1.5rem; margin-bottom: 15px;">Nuestra Visión</h3>
+                    <p style="color: #cbd5e1; line-height: 1.6; font-size: 1rem;">
+                        Ser reconocidos institucionalmente como el pilar fundamental que custodia el legado intangible de la Fuerza de Submarinos del Perú, constituyendo un referente de identidad, valores cívicos y navales para las futuras generaciones.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="junta" style="padding: 80px 5%; background: #060d13;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            
+            <div style="text-align: center; margin-bottom: 50px;">
+                <span class="tag-institucional" style="color: #c88800; font-weight: bold; letter-spacing: 2px;">Organización</span>
+                <h2 style="color: #ffffff; font-size: 2.2rem; margin-top: 10px;">Junta Directiva</h2>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; justify-content: center;">
+                
+                <div style="background: rgba(13, 27, 42, 0.4); border-radius: 12px; padding: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="width: 110px; height: 110px; border-radius: 50%; background: #0d1b2a; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; border: 2px solid #c88800;">
+                        <i class="fas fa-user-tie" style="font-size: 3rem; color: #cbd5e1;"></i>
+                    </div>
+                    <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 5px;">Presidente de la Asociación</h4>
+                    <p style="color: #c88800; font-size: 0.9rem; text-transform: uppercase; font-weight: bold;">Consejo Directivo</p>
+                </div>
+
+                <div style="background: rgba(13, 27, 42, 0.4); border-radius: 12px; padding: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="width: 110px; height: 110px; border-radius: 50%; background: #0d1b2a; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; border: 2px solid #c88800;">
+                        <i class="fas fa-user-tie" style="font-size: 3rem; color: #cbd5e1;"></i>
+                    </div>
+                    <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 5px;">Vicepresidente</h4>
+                    <p style="color: #c88800; font-size: 0.9rem; text-transform: uppercase; font-weight: bold;">Consejo Directivo</p>
+                </div>
+
+                <div style="background: rgba(13, 27, 42, 0.4); border-radius: 12px; padding: 25px; text-align: center; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="width: 110px; height: 110px; border-radius: 50%; background: #0d1b2a; margin: 0 auto 15px auto; display: flex; align-items: center; justify-content: center; border: 2px solid #c88800;">
+                        <i class="fas fa-user-tie" style="font-size: 3rem; color: #cbd5e1;"></i>
+                    </div>
+                    <h4 style="color: #ffffff; font-size: 1.15rem; margin-bottom: 5px;">Vocal de Historia y Cultura</h4>
+                    <p style="color: #c88800; font-size: 0.9rem; text-transform: uppercase; font-weight: bold;">Comité Ejecutivo</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" style="padding: 80px 5%; background: linear-gradient(180deg, #060d13 0%, #02070b 100%);">
+        <div style="max-width: 600px; margin: 0 auto; background: rgba(255,255,255,0.01); border: 1px solid rgba(200,136,0,0.15); padding: 40px 30px; border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.5);">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="color: #ffffff; font-size: 1.8rem; margin-bottom: 10px;">Contacto e Incorporaciones</h3>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Si eres Oficial Submarinista o deseas solicitar información institucional, escríbenos.</p>
+            </div>
+
+            <form action="#" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="color: #ffffff; font-size: 0.9rem; font-weight: bold;">Nombre Completo:</label>
+                    <input type="text" placeholder="Ej. Juan Carlos Curillo" required style="padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: #0d1b2a; color: #ffffff; font-size: 1rem;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="color: #ffffff; font-size: 0.9rem; font-weight: bold;">Correo Electrónico:</label>
+                    <input type="email" placeholder="correo@ejemplo.com" required style="padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: #0d1b2a; color: #ffffff; font-size: 1rem;">
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 5px;">
+                    <label style="color: #ffffff; font-size: 0.9rem; font-weight: bold;">Mensaje o Motivo de Consulta:</label>
+                    <textarea rows="4" placeholder="Escribe tu mensaje aquí..." required style="padding: 12px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.1); background: #0d1b2a; color: #ffffff; font-size: 1rem; resize: none;"></textarea>
+                </div>
+
+                <button type="submit" class="btn-booking" style="width: 100%; margin-top: 10px; padding: 14px; font-weight: bold; text-transform: uppercase;">Enviar Solicitud</button>
+            </form>
+        </div>
+    </section>
+  </main>
+
+  <footer class="footer-modern">
+    <div class="container-footer">
+        <div class="footer-block about">
+            <img src="logosub1.png" alt="Logo Abtao" class="footer-logo">
+            <p>“La asociación de submarinistas, fue inaugurado el 28 de enero del año 2004”</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" aria-label="Youtube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+
+        <div class="footer-block links">
+            <h3>INICIO</h3>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Historia</a></li>
+                <li><a href="#">Galería</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-block contact">
+            <h3>Visítanos</h3>
+            <p><i class="fa-solid fa-location-dot"></i>  Av. Jorge Chávez 120, Callao</p>
+            <p><i class="fa-solid fa-phone"></i>  904755912</p>
+            <p><i class="fa-solid fa-envelope"></i> informes@submarinoabtao.com</p>
+        </div>
+
+        <div class="footer-block legal">
+            <h3>Transparencia</h3>
+            <a href="#" class="libro-btn">
+                <i class="fa-solid fa-book"></i> Libro de Reclamaciones
+            </a>
+          
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Asociación de Submarinistas. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+    <a href="https://wa.me/51904755912" class="whatsapp-float" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+
+<script>
+        // 1. Quitar preloader fluidamente
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                preloader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+                document.documentElement.style.overflow = 'auto';
+                setTimeout(() => { preloader.style.display = 'none'; }, 600);
+            }
+        });
+
+        // Seguro anti-bloqueo del preloader
+        setTimeout(() => {
+            const preloader = document.getElementById('preloader');
+            if (preloader && !preloader.classList.contains('hidden')) {
+                preloader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }, 3000);
+
+        // 2. DETECTOR DE SCROLL
+        const headerAsoc = document.querySelector('.main-header-asoc');
+        if (headerAsoc) {
+            const toggleScrollAsoc = () => {
+                const scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY;
+                if (scrollTop > 50) {
+                    headerAsoc.classList.add('scrolled');
+                    headerAsoc.style.setProperty('background-color', '#222', 'important');
+                    headerAsoc.style.setProperty('background', '#222', 'important');
+                } else {
+                    headerAsoc.classList.remove('scrolled');
+                    headerAsoc.style.setProperty('background-color', 'transparent', 'important');
+                    headerAsoc.style.setProperty('background', 'transparent', 'important');
+                }
+            };
+
+            document.addEventListener('scroll', toggleScrollAsoc, true);
+            window.addEventListener('scroll', toggleScrollAsoc);
+            toggleScrollAsoc();
+        }
+
+        // 3. Menú Hamburguesa Móvil
+        const btnMenu = document.getElementById('menu-btn-asoc');
+        const navMenu = document.getElementById('main-nav-asoc');
+
+        if (btnMenu && navMenu) {
+            btnMenu.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                const icon = btnMenu.querySelector('i');
+                if (icon) {
+                    icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

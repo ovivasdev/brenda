@@ -1,0 +1,2367 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body,html{
+  height:100%;
+  overflow-x:hidden;
+}
+
+body:has(#preloader:not(.hidden)) {
+    overflow: hidden;
+}
+
+/* --- SECCIÓN PORTADA --- */
+.portada {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Ocupa toda la pantalla inicial */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-nav ul li a.active {
+color: #E9B44C !important; /* Cambiado a Mostaza */
+    border-bottom: none !important; /* ELIMINA LA LÍNEA AZUL/BLANCA */
+    font-weight: bold;
+}
+
+/* VIDEO */
+#bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+}
+
+/* Oscurecer video */
+.portada::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: -1;
+}
+
+/* HEADER */
+header {
+  position: absolute; /* Se mantiene arriba de la portada */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+/* Estado inicial del Navbar (Transparente) */
+header, .header-container {
+    position: fixed; /* Asegura que siempre esté arriba */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent; /* Empieza transparente */
+    transition: background-color 0.4s ease, backdrop-filter 0.4s ease; /* Transición suave */
+    border-bottom: none !important;
+}
+
+/* Estado al hacer Scroll (mismo color sólido que el footer) */
+.nav-scrolled {
+    background-color: #222 !important; /* Igual al fondo del footer */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25); /* Sombra sutil para separar del contenido */
+}
+
+.navbar.nav-scrolled,
+.nav-scrolled .navbar {
+    background-color: #222 !important;
+}
+
+.navbar {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 80px;
+  height: 120px;
+  border-bottom: 1px solid rgba(255,255,255,0.6);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* MENU PRINCIPAL */
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  color: #fff;
+  list-style: none;
+  height: 100%; /* Para que la línea divisoria cubra todo el alto */
+  margin-left: auto; /* 🔥 ESTA LÍNEA EMPUJA TODO EL MENÚ A LA DERECHA */
+}
+
+/* 🔥 SOLO afecta al menú principal */
+.menu > li{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
+}
+
+.menu > li:first-child {
+  margin-left: auto;
+}
+
+.menu > li:hover{
+  color:#c88800;
+}
+
+.menu .dropdown {
+  margin-right: 40px;
+}
+
+/* empujar el bloque de contacto a la derecha */
+.divider + li {
+  margin-left: auto;
+}
+
+/* Ajusta el icono de búsqueda para que no esté pegado al borde */
+.search-icon {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .search-icon {
+        display: none;
+    }
+}
+
+/* DIVIDER */
+.divider {
+  width: 1px;
+  background: rgba(255,255,255,0.5);
+  align-self: stretch; /* Se estira al alto del contenedor padre (.menu) */
+  height: 100%; 
+  margin: 0 10px; /* Ajusta el aire a los lados de la línea */
+}
+
+/* LOGO */
+.logo-container{
+  display:flex;
+  align-items:center;
+}
+
+.logo{
+  width:80px;
+  height:80pxs;
+  object-fit:contain;
+  display:block;
+}
+
+/* ========================= */
+/* DROPDOWN */
+/* ========================= */
+
+.dropdown{
+  position:relative;
+}
+
+.submenu{
+  position:absolute;
+  top:67px;
+  left:0;
+  background:#666;
+  min-width:220px;
+  border-top:4px solid #c88800;
+  padding:0;
+  list-style:none;
+  margin:0;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(-5px);
+  transition:all 0.2s ease;
+  z-index:9999;
+}
+
+.dropdown:hover .submenu{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.submenu li{
+  border-bottom:1px solid rgba(255,255,255,0.15);
+}
+
+.submenu li:last-child{
+  border-bottom:none;
+}
+
+.submenu li a{
+  display:block;
+  height:48px;
+  line-height:48px;
+  padding:0 20px;
+  color:#ffffff;
+  text-decoration:none;
+  font-size:14px;
+  background:#666;
+  transition:background 0.2s ease;
+}
+
+.submenu li a:hover{
+  background:#4f4f4f;
+}
+
+/* HERO */
+.hero {
+  position: absolute;
+  bottom: 15%;
+  left: 8%;
+  color: #fff;
+  z-index: 5;
+}
+
+.hero h1{
+  font-size:55px;
+  font-weight:700;
+  line-height:1.2;
+  text-shadow:2px 2px 8px rgba(0,0,0,0.7);
+  margin-bottom:25px;
+}
+
+.btn-reserva{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  padding:14px 26px;
+  border:2px solid #fff;
+  color:#fff;
+  text-decoration:none;
+  font-size:15px;
+  letter-spacing:1px;
+  background:transparent;
+  transition:all 0.3s ease;
+}
+
+.btn-reserva:hover{
+  background:#fff;
+  color:#000;
+}
+
+/* REDES */
+.social {
+    position: fixed; /* Mantiene los iconos visibles al bajar */
+    right: 20px;     /* Los devuelve a su posición inicial a la derecha */
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 99;
+}
+
+
+.social-item{
+  position:relative;
+  display:flex;
+  align-items:center;
+}
+
+.social-item a{
+  width:42px;
+  height:42px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:6px;
+  text-decoration:none;
+  color:#333;
+  font-size:17px;
+  transition:all 0.3s ease;
+}
+
+/* EFECTO GENERAL */
+.social-item:hover a{
+  transform:scale(1.15);
+}
+
+
+.social-item span{
+  position:absolute;
+  right:60px;
+  background:#000;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:6px;
+  font-size:13px;
+  white-space:nowrap;
+  opacity:0;
+  transform:translateX(10px);
+  transition:all 0.25s ease;
+  pointer-events:none;
+}
+
+.social-item span::after{
+  content:"";
+  position:absolute;
+  top:50%;
+  right:-7px;
+  transform:translateY(-50%);
+  border-top:7px solid transparent;
+  border-bottom:7px solid transparent;
+  border-left:7px solid #000;
+}
+
+.social-item:hover span{
+  opacity:1;
+  transform:translateX(0);
+}
+
+/* EMAIL */
+.email:hover a{
+  background:#444;
+  color:#fff;
+  box-shadow:0 0 14px rgba(0,0,0,0.6);
+}
+
+/* FACEBOOK */
+.facebook:hover a{
+  background:#1877f2;
+  color:#fff;
+  box-shadow:0 0 15px rgba(24,119,242,0.7);
+}
+
+/* YOUTUBE */
+.youtube:hover a{
+  background:#ff0000;
+  color:#fff;
+  box-shadow:0 0 15px rgba(255,0,0,0.7);
+}
+
+/* INSTAGRAM */
+.instagram:hover a{
+  background:linear-gradient(45deg,#f9ce34,#ee2a7b,#6228d7);
+  color:#fff;
+  box-shadow:0 0 15px rgba(238,42,123,0.7);
+}
+
+/* --- BOTÓN WHATSAPP FLOTANTE (CIRCULAR Y LIMPIO) --- */
+.whatsapp-float {
+    position: fixed;
+    right: 20px;      /* Misma alineación horizontal que los iconos sociales */
+    bottom: 20px;     /* Ubicado en la esquina inferior */
+    width: 42px;      /* Mismo ancho que .social-item a */
+    height: 42px;     /* Mismo alto que .social-item a */
+    background-color: #25d366; /* Verde característico */
+    color: #fff;
+    border-radius: 6px; /* Mismo redondeado que tus otros iconos */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    text-decoration: none;
+    z-index: 99;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+    color: #fff;
+}
+
+/* Asegurar que el icono interno sea blanco */
+.whatsapp-float i {
+    color: white !important;
+}
+
+
+
+
+
+/* --- CARRUSEL DE NOTICIAS --- */
+.news-section {
+    width: 100%;
+    background: #1a1a1a;
+    position: relative;
+    z-index: 1;
+}
+
+.news-header {
+    background: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #444;
+}
+
+.carousel-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* Reducción de altura y scroll horizontal */
+.news-container {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 380px; /* Altura reducida */
+    scrollbar-width: none; /* Oculta scroll en Firefox */
+}
+
+.news-container::-webkit-scrollbar {
+    display: none; /* Oculta scroll en Chrome/Safari */
+}
+
+.news-card {
+    position: relative;
+    min-width: 50%; /* Muestra 2 noticias a la vez */
+    height: 100%;
+    flex-shrink: 0;
+    border-right: 1px solid #333;
+}
+
+.news-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Capa de texto sobre imagen */
+.news-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 40px;
+    background: linear-gradient(to top, rgba(0,0,0,0.95), transparent);
+    color: #fff;
+    z-index: 2;
+}
+
+.news-content h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* Flechas en los extremos */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: background 0.3s;
+}
+
+.carousel-btn:hover {
+    background: #c88800;
+}
+
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+
+@media (max-width: 768px) {
+    .news-card { min-width: 100%; } /* 1 noticia en móvil */
+}
+
+/* Agrega esto a tu style.css para que el JS funcione */
+.submenu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* BARRA SEPARADORA */
+.separator-bar {
+  width: 100%;
+  height: 60px; /* Grosor adecuado basado en la imagen de referencia */
+  background-color: #c88800; /* Color dorado de la imagen y el menú */
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3); /* Sombra sutil para dar profundidad */
+}
+
+/* --- SECCIÓN INFORMACIÓN MEJORADA --- */
+/*.info-visita {
+    position: relative;
+    padding: 120px 20px;
+    background-color: #1a1a1a;
+    background-image: url('info/fondomar.png');
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}*/
+
+.info-visita {
+    position: relative;
+    padding: 120px 20px;
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Evita que el video se salga de los bordes */
+}
+
+#bg-video-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -2; /* Detrás de todo */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+.info-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 20, 0.7); /* Ajusta la opacidad según necesites */
+    z-index: -1;
+}
+
+.container-visita {
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 2;
+    max-width: 1200px;
+}
+/* Tarjeta Estilo Glassmorphism con bordes dorados */
+.card-modern {
+    background: rgba(45, 48, 54, 0.9); /* Color oscuro elegante */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(200, 136, 0, 0.3);
+    border-radius: 25px;
+    padding: 50px 40px;
+    width: 450px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.card-modern:hover {
+    transform: translateY(-12px);
+    border-color: #c88800; /* Dorado principal */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.card-icon-top {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 80px;
+    background: #c88800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fff;
+    border: 5px solid #1a1a1a;
+    box-shadow: 0 10px 20px rgba(200, 136, 0, 0.4);
+}
+
+.card-icon-modern {
+    width: 70px;
+    height: 70px;
+    background: #c88800;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: -80px auto 25px auto; /* Elevado sobre la tarjeta */
+    border: 4px solid #1a1a1a;
+}
+
+.card-modern h3 {
+    color: #c88800;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+/* Estilos de Contenido Interno */
+.horario-content .days { color: #aaa; font-size: 14px; letter-spacing: 1px; }
+.horario-content .time { font-size: 40px; font-weight: bold; margin: 15px 0; color: #fff; }
+.tag-feriado { color: #c88800; font-weight: bold; }
+
+.importante-box {
+    margin-top: 35px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 15px;
+    text-align: left;
+    border-left: 4px solid #c88800;
+}
+.importante-box h4 { color: #c88800; font-size: 16px; margin-bottom: 8px; }
+.importante-box p { font-size: 13px; color: #ddd; line-height: 1.5; }
+.sub-nota { margin-top: 10px; color: #888 !important; font-style: italic; }
+
+/* Tabla de Precios Elegante */
+.price-item {
+    display: flex;
+    align-items: baseline;
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #eee;
+}
+.dot-line {
+    flex-grow: 1;
+    border-bottom: 1px dotted rgba(255,255,255,0.3);
+    margin: 0 10px;
+}
+.value { color: #c88800; font-weight: bold; font-size: 20px; }
+
+.info-footer {
+    margin-top: 25px;
+    text-align: left;
+    font-size: 12px;
+    color: #888;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .card-modern { width: 100%; margin-top: 60px; }
+}
+
+/* --- FOOTER MODERNO Y ADAPTABLE --- */
+.footer-modern {
+    background: #222; 
+    color: #ffffff;
+    padding: 60px 0 20px 0;
+    position: relative;
+    z-index: 100;
+    border-top: 20px solid #c88800;
+}
+
+.container-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: grid;
+    /* 4 columnas en desktop, se adapta solo */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-block h3 {
+    color: #c88800;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Decoración bajo títulos */
+.footer-block h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background: #c88800;
+}
+
+.footer-logo {
+    width: 150px;             /* Ajusta el ancho según necesites */
+    height: auto;
+    display: block;
+    margin-bottom: 20px;
+    
+    /* ELIMINA EL CÍRCULO BLANCO */
+    background: transparent !important; 
+    border-radius: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+
+    /* EFECTO PARA QUE RESALTE EN FONDO OSCURO */
+    /* Si tu logo es oscuro, esto lo volverá blanco automáticamente */
+    /*filter: brightness(0) invert(1);*/ 
+    
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.footer-block p {
+    font-size: 14px;
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.footer-block ul {
+    list-style: none;
+}
+
+.footer-block ul li {
+    margin-bottom: 12px;
+}
+
+.footer-block ul li a {
+    color: #aaa;
+    text-decoration: none;
+    transition: 0.3s ease;
+    font-size: 14px;
+}
+
+.footer-block ul li a:hover {
+    color: #c88800;
+    padding-left: 8px;
+}
+
+/* Redes en Footer */
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    width: 38px;
+    height: 38px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer-social a:hover {
+    background: #c88800;
+    transform: translateY(-3px);
+}
+
+/* Botón Libro Reclamaciones */
+.libro-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s;
+}
+
+.libro-btn:hover {
+    border-color: #c88800;
+    color: #c88800;
+}
+
+.app-badges {
+    margin-top: 25px;
+    color: #666;
+}
+
+.app-badges .icons {
+    font-size: 20px;
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+/* Copyright Bar */
+.footer-bottom {
+    margin-top: 50px;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-bottom p {
+    font-size: 12px;
+    color: #666;
+}
+
+/* --- ADAPTABILIDAD CELULARES (Android/iOS) --- */
+@media (max-width: 768px) {
+    .container-footer {
+        grid-template-columns: 1fr; /* Una sola columna en móvil */
+        text-align: center;
+    }
+
+    .footer-block h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .footer-social {
+        justify-content: center;
+    }
+
+    .footer-modern {
+        padding-bottom: 80px; /* Espacio extra para el botón de WhatsApp flotante */
+    }
+
+    /* Centrado automático en móviles */
+@media (max-width: 768px) {
+    .footer-logo {
+        margin: 0 auto 20px auto;
+    }
+}
+}
+
+/* --- ADAPTACIÓN MÓVIL (SÓLO PARA PANTALLAS < 768px) --- */
+@media (max-width: 768px) {
+    /* NAVBAR Y HEADER */
+    .navbar {
+        padding: 0 20px; /* Reduce espacio lateral en móvil */
+        height: 80px;
+    }
+
+    .logo {
+        width: 60px; /* Logo más pequeño en móvil */
+        height: 60px;
+    }
+
+    /* MENÚ HAMBURGUESA */
+    .menu-toggle {
+        display: block;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .nav-panel {
+        position: fixed;
+        right: -100%;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #222;
+        width: 80%;
+        height: 100vh;
+        padding-top: 20px;
+        transition: 0.4s;
+        z-index: 1000;
+        overflow-y: auto;
+    }
+
+    .nav-panel.active {
+        right: 0;
+    }
+
+    .menu {
+        flex-direction: column;
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .menu li {
+        width: 100%;
+        padding: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .divider {
+        display: none; /* Ocultar divisor en móvil */
+    }
+
+    /* AJUSTE SECCIÓN NOTICIAS */
+    .news-container {
+        height: auto; /* Permite que el contenido dicte la altura */
+    }
+
+    .news-card {
+        min-width: 100% !important; /* Fuerza una noticia por vista en móvil */
+        border-right: none;
+        border-bottom: 1px solid #333;
+    }
+
+    .news-content {
+        padding: 20px; /* Reduce padding para pantallas pequeñas */
+    }
+
+    .news-content h3 {
+        font-size: 16px;
+    }
+
+    /* AJUSTE HERO (TEXTO PRINCIPAL) */
+    .hero {
+        left: 5%;
+        bottom: 10%;
+        width: 90%;
+    }
+
+    .hero h1 {
+        font-size: 30px; /* Texto más pequeño para evitar desbordes */
+    }
+}
+
+/* Esconder icono hamburguesa en escritorio por defecto */
+.mobile-menu-icon {
+    display: none;
+}
+
+/* 1. Ocultar el icono en computadoras */
+.menu-toggle {
+    display: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* 2. Reglas para celulares (Media Query) */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Ahora sí aparece el icono */
+        z-index: 1001;
+    }
+
+    .navbar {
+        padding: 0 20px; /* Menos espacio en los bordes */
+    }
+
+    .nav-panel {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 70%;
+        height: 100vh;
+        background: #1a1a1a;
+        padding-top: 20px;
+        transition: 0.4s ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        overflow-y: auto;
+    }
+
+    .nav-panel.active {
+        right: 0;
+    }
+
+    .menu {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 0px;
+        width: 100%;
+    }
+
+    .menu li {
+        font-size: 18px;
+    }
+
+    .submenu {
+        position: static; /* En celulares no debe flotar */
+        opacity: 0;
+        visibility: hidden;
+        transform: none;
+        background: transparent;
+        text-align: center;
+        display: block; /* Permitir que se muestre cuando .show se aplique */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    .submenu.show {
+        opacity: 1;
+        visibility: visible;
+        max-height: 500px; /* Suficiente para mostrar todos los items */
+    }
+
+    /* Mantener padding lateral del navbar en móvil cuando hace scroll */
+    .navbar.nav-scrolled {
+        padding: 10px 20px !important;
+    }
+
+    /* Ocultar icono de búsqueda en móvil */
+    .search-item {
+        display: none;
+    }
+
+    /* Quitar margin-right del dropdown en móvil */
+    .menu .dropdown {
+        margin-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        width: 100%;
+        padding-bottom: 0;
+    }
+
+    .menu .dropdown > a {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 8px;
+        width: auto;
+    }
+
+    .menu .dropdown.open > a .sutil-icon {
+        transform: rotate(180deg);
+    }
+
+    .menu .dropdown .submenu {
+        width: 100%;
+        margin-top: 14px;
+        border-top: 3px solid #c88800;
+    }
+
+    .menu .dropdown .submenu li {
+        width: 100%;
+        padding: 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .menu .dropdown .submenu li a {
+        height: 44px;
+        line-height: 44px;
+        padding: 0 20px;
+        background: #555;
+        text-align: center;
+    }
+}
+
+/* --- ESTILOS PRELOADER PROFESIONAL --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0a0e14; /* Fondo azul naval profundo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999; /* Por encima de todo */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+
+
+.loader-content {
+    text-align: center;
+}
+
+.submarine-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* Icono con sus colores originales */
+.sub-icon-original {
+    width: 350px; /* Ajusta el tamaño aquí */
+    height: auto;
+    animation: subNavegando 3s ease-in-out infinite;
+    /* NO HAY FILTER INVERT AQUÍ */
+}
+
+@keyframes subNavegando {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(-3deg); }
+}
+
+/* Burbujas de agua */
+.bubbles {
+    position: absolute;
+    right: -30px;
+    top: 40%;
+}
+
+.bubbles span {
+    display: block;
+    width: 6px;
+    height: 6px;
+    background: rgba(200, 136, 0, 0.4); /* Dorado sutil */
+    border-radius: 50%;
+    margin: 5px;
+    animation: bubblesRight 1.5s infinite;
+}
+
+@keyframes bubblesRight {
+    0% { transform: translateX(0); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(30px) translateY(-15px); opacity: 0; }
+}
+
+.loader-content p {
+    color: #fff;
+    margin-top: 20px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.loader-bar {
+    width: 140px;
+    height: 2px;
+    background: rgba(255,255,255,0.05);
+    margin: 15px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.loader-bar::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #c88800; /* Línea de carga dorada */
+    animation: loadingBar 2s linear infinite;
+}
+
+@keyframes loadingBar {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* Clase para ocultar */
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Estilo para el Banner Introductorio */
+.page-intro {
+    height: 40vh; /* Altura de la introducción */
+    background: linear-gradient(rgba(0,0,0,0.6), #020b12), 
+                url('historia/historia.png') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.intro-content h1 {
+    font-family: 'Orbitron', sans-serif;
+    color: #00d4ff;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.intro-content p {
+    color: #fff;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Corregir aglomeración con el Navbar */
+.separated-intro {
+    padding-top: 130px !important; /* Espacio extra para que el texto baje */
+    min-height: 50vh; /* Aumentamos un poco la altura para que respire más */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ajustes para la legibilidad de los textos largos */
+.step-info p {
+    color: #fff;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    text-align: justify; /* Mejora la apariencia de textos largos */
+}
+
+.step-info h3 {
+    color: #E9B44C; /* Color Mostaza para los títulos */
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 25px;
+    letter-spacing: 2px;
+}
+
+/* Estilo para el número de año en el fondo */
+.step-number {
+    font-size: 6rem;
+    color: rgba(233, 180, 76, 0.05); /* Muy sutil de fondo */
+    font-family: 'Orbitron';
+    display: block;
+    margin-bottom: -50px;
+    font-weight: bold;
+}
+
+/* Responsivo para celulares */
+@media (max-width: 768px) {
+    .separated-intro {
+        padding-top: 100px !important;
+    }
+    .step-info p {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+    .nav-dot {
+        width: 50px;
+        font-size: 0.7rem;
+    }
+}
+
+/* Imagen específica para reservas si quieres cambiarla */
+.intro-reservas {
+    background-image: linear-gradient(rgba(0,0,0,0.6), #020b12), 
+                      url('ruta-a-foto-reservas.jpg');
+}
+
+@media (max-width: 768px) {
+    .intro-content h1 { font-size: 1.8rem; }
+    .page-intro { height: 30vh; }
+}
+
+/* Clase para la pestaña activa */
+/* Color Mostaza para la pestaña donde el usuario está ubicado */
+.nav-active {
+    color: #E9B44C !important; /* Mostaza Notorio */
+    font-weight: bold !important;
+    text-decoration: none !important; /* Sin subrayado */
+}
+
+/* Estilo base para que en el index y otras paginas se vea normal */
+#main-header-placeholder a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Hover opcional para que sepa que se puede hacer clic */
+#main-header-placeholder a:hover {
+    color: #00d4ff; 
+}
+
+/* 1. Resetear el color de los enlaces para que no sean celestes */
+.main-header li a, 
+#main-header-placeholder a {
+    color: inherit !important; /* Hereda el color blanco/gris original */
+    text-decoration: none !important;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* 2. Quitar el cambio a celeste al pasar el mouse (Hover) */
+.main-header li a:hover, 
+#main-header-placeholder a:hover {
+    color: #E9B44C !important; /* Cambia a Mostaza en lugar de celeste */
+}
+
+/* 3. Estilo para la PESTAÑA ACTIVA y HOVER (Simulando el ::before) */
+/* Si tus otras pestañas usan una línea arriba o abajo, aquí la replicamos */
+.nav-active, 
+.main-header li a:hover {
+    color: #E9B44C !important; 
+}
+
+/* Si el "before" de tus otras pestañas es una línea, añadimos esto: */
+.nav-active::before,
+.main-header li a:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* Ajusta según tu diseño */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #E9B44C; /* Color Mostaza igual al de Reservas */
+    visibility: visible;
+}
+
+/* Aseguramos que las pestañas NO activas no tengan la línea visible */
+.main-header li a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #E9B44C;
+    transition: width 0.3s ease;
+}
+
+.main-header li a:hover::before {
+    width: 100%;
+}
+
+/* --- SECCIÓN HISTORIA MODERNA --- */
+
+/* Separación clara del contenido */
+.history-container {
+    background-color: #020b12;
+    padding: 80px 20px;
+    margin-top: 0; /* Asegura que no se encime al header */
+    border-top: 1px solid rgba(233, 180, 76, 0.3); /* Línea divisoria sutil mostaza */
+}
+
+.interactive-timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* Navegación por puntos (Mostaza) */
+.timeline-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.timeline-nav::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    z-index: 1;
+}
+
+.nav-dot {
+    background: #020b12;
+    border: 2px solid #E9B44C;
+    color: #E9B44C;
+    width: 60px;
+    height: 30px;
+    border-radius: 20px;
+    z-index: 2;
+    cursor: pointer;
+    font-family: 'Orbitron';
+    font-size: 0.8rem;
+    transition: all 0.3s;
+}
+
+.nav-dot.active {
+    background: #E9B44C;
+    color: #020b12;
+    box-shadow: 0 0 15px #E9B44C;
+}
+
+/* Visibilidad de los pasos */
+.history-step {
+    display: none; /* Ocultos por defecto */
+    animation: fadeIn 0.5s ease;
+}
+
+.history-step.active {
+    display: block;
+}
+
+.step-info h3 {
+    color: #fff;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.step-number {
+    font-size: 4rem;
+    color: rgba(233, 180, 76, 0.1);
+    font-family: 'Orbitron';
+    display: block;
+    margin-bottom: -40px;
+}
+
+/* Botón interactivo */
+.btn-next {
+    background: transparent;
+    border: 1px solid #E9B44C;
+    color: #E9B44C;
+    padding: 12px 30px;
+    margin-top: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-next:hover {
+    background: #E9B44C;
+    color: #020b12;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ELIMINAR CUALQUIER LÍNEA DEBAJO DEL HEADER */
+header, 
+#main-header-placeholder, 
+.header-container,
+nav {
+    border-bottom: none !important;
+    box-shadow: none !important; /* Elimina sombras que parecen líneas */
+}
+
+/* Evitar que los enlaces tengan subrayado o color azul por defecto */
+.main-nav ul li a {
+    text-decoration: none !important;
+    color: white; /* Color base de tus letras */
+}
+
+/* Color mostaza al pasar el mouse (sin subrayado) */
+.main-nav ul li a:hover {
+    color: #E9B44C !important;
+    text-decoration: none !important;
+}
+
+/* Este es el color tenue que aparecerá al bajar el scroll */
+.nav-scrolled {
+    background-color: #222 !important;
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    transition: all 0.4s ease;
+}
+
+/* ================================================= BAJO EL SCROLL (NAVBAR) ================================================= */
+
+#main-header-placeholder,
+#main-header-placeholder header,
+header {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent !important;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out, padding 0.4s ease-in-out !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar.nav-scrolled,
+#main-header-placeholder header .navbar.nav-scrolled,
+header .navbar.nav-scrolled {
+    background: #222 !important;
+    background-color: #222 !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+    padding: 10px 80px;
+}
+
+.navbar.nav-scrolled,
+.nav-scrolled .navbar {
+    background: #222 !important;
+    background-color: #222 !important;
+}
+
+.navbar.nav-scrolled .menu li a {
+    color: #ffffff !important;
+}
+
+/* 3. Limpieza de pestañas (Quitar líneas y azul) */
+.menu li {
+    border: none !important;
+    list-style: none;
+}
+
+.menu li a {
+    text-decoration: none !important;
+    color: white !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.3s;
+}
+
+/* 4. Estado Activo y Hover (Color Mostaza) */
+.nav-active, 
+.menu li a:hover,
+.menu li a.active {
+    color: #E9B44C !important;
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* 5. Ajuste para que el texto de Historia no choque con el menú */
+.page-intro {
+    padding-top: 140px !important;
+}
+
+/* Quitar cualquier línea vertical residual */
+.menu li::after, .menu li::before {
+    display: none !important;
+    content: none !important;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s ease;
+}
+
+
+
+/* --- SECCIÓN RESERVAS --- */
+.booking-container {
+    padding: 60px 5%;
+    background: #020b12;
+    display: flex;
+    justify-content: center;
+}
+
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* PC: Dos columnas */
+    gap: 30px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.booking-form-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(233, 180, 76, 0.2);
+}
+
+.input-group { margin-bottom: 20px; }
+.input-group label {
+    display: block;
+    color: #E9B44C;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 8px;
+}
+
+.input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* Selector de cantidad */
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quantity-selector button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #E9B44C;
+    background: transparent;
+    color: #E9B44C;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.quantity-selector input {
+    width: 60px !important;
+    text-align: center;
+}
+
+.btn-booking {
+    width: 100%;
+    padding: 15px;
+    background: #E9B44C;
+    color: #020b12;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: transform 0.3s;
+}
+
+.btn-booking:hover { transform: scale(1.02); }
+
+/* DISEÑO TICKET PREVIEW */
+.ticket-preview {
+    background: white;
+    color: #333;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ticket-header {
+    background: #E9B44C;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.mini-logo { height: 30px; }
+
+.ticket-body { padding: 30px; }
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    border-top: 1px dashed #ccc;
+    padding-top: 20px;
+}
+
+.ticket-total {
+    text-align: right;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+}
+
+.ticket-footer {
+    background: #eee;
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 850px) {
+    .booking-grid { grid-template-columns: 1fr; }
+    .booking-summary { order: -1; } /* El ticket aparece arriba en móviles */
+}
+
+.qty-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+}
+
+.qty-row span {
+    color: #ccc;
+    font-size: 0.9rem;
+}
+
+/* Color mostaza para el total del ticket */
+#summary-total {
+    color: #E9B44C;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.passenger-input-row {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(233, 180, 76, 0.1);
+}
+
+.passenger-input-row span {
+    color: #E9B44C;
+    font-size: 0.8rem;
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.sutil-text {
+    color: #666;
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+.pass-name { flex: 2; }
+.pass-dni { flex: 1; }
+
+.btn-add-person {
+    width: 100%;
+    background: transparent;
+    border: 2px dashed #E9B44C;
+    color: #E9B44C;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+.btn-add-person:hover { background: rgba(233, 180, 76, 0.1); }
+
+.consolidado-card {
+    margin-top: 30px;
+    background: rgba(255,255,255,0.05);
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 4px solid #E9B44C;
+}
+
+.consolidado-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: #ccc;
+}
+
+.total-final {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron';
+}
+
+.total-final strong { color: #E9B44C; font-size: 1.4rem; }
+
+.pase-input-block {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(233, 180, 76, 0.2);
+}
+
+.pase-header {
+    display: flex;
+    justify-content: space-between;
+    color: #E9B44C;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* --- TICKET ADAPTABLE
+.ticket-preview {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}*/
+
+/* --- ESTILO PARA ESCRITORIO (Default) --- */
+.booking-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas fijas en PC */
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+.booking-form-card {
+    order: 1; /* Formulario a la izquierda */
+}
+
+.booking-summary {
+    order: 2; /* Ticket a la derecha */
+    color: #ffffff;
+}
+
+@media (max-width: 992px) {
+    .booking-grid {
+        display: flex !important;
+        flex-direction: column !important; 
+        gap: 25px;
+        padding: 15px;
+    }
+
+    /* 1. EL FORMULARIO APARECE PRIMERO */
+    .booking-form-card {
+        order: 1 !important; 
+    }
+
+    /* 2. LA TARJETA DE ABORDAJE APARECE DEBAJO */
+    .booking-summary {
+        order: 2 !important; 
+        position: relative; /* Quitamos el 'sticky' para que no tape el formulario al bajar */
+        top: 0;
+        margin-top: 20px;
+    }
+
+    .ticket-preview {
+        max-width: 100% !important; /* Se ajusta al ancho del celular */
+        margin: 0 auto;
+    }
+
+    /* Mejora de lectura en dispositivos pequeños */
+    .input-row-container {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+    
+    input, select {
+        font-size: 16px !important; /* Evita zoom molesto en iOS */
+    }
+}
+
+/* Móvil: Uno abajo del otro (dentro de la media query que pusimos arriba) */
+@media (max-width: 992px) {
+    .input-row-container {
+        flex-direction: column;
+    }
+}
+
+/* --- MEDIA QUERY PARA MÓVIL --- */
+@media (max-width: 992px) {
+    .ticket-preview {
+        max-width: 100%; /* En móvil ocupa todo el ancho disponible */
+        margin-bottom: 20px;
+    }
+    
+    .booking-grid {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .booking-summary {
+        order: 1; /* Ticket arriba en móvil */
+    }
+    
+    .booking-form-card {
+        order: 2; /* Formulario abajo en móvil */
+    }
+}
+
+/* --- SECCIÓN ASOCIACIÓN CON LOGO --- */
+.asociacion-seccion {
+    padding: 60px 5%;
+    background: rgba(2, 11, 18, 0.5); /* Fondo azul sutil */
+    border-top: 1px solid rgba(233, 180, 76, 0.2);
+    margin-top: 50px;
+}
+
+.asociacion-container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.asociacion-grid {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: rgba(33, 31, 31, 0.479);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.asociacion-logo img {
+    width: 180px; /* Tamaño del logo en escritorio */
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(233, 180, 76, 0.2));
+}
+
+.asociacion-info {
+    flex: 1;
+}
+
+.tag-institucional {
+    color: #E9B44C;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.asociacion-info h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #fff;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+.asociacion-info p {
+    color: #ccc;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.btn-asociacion {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    background: #E9B44C;
+    color: #020b12;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.btn-asociacion:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(233, 180, 76, 0.3);
+}
+
+/* --- AJUSTE PARA MÓVILES --- */
+@media (max-width: 768px) {
+    .asociacion-grid {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .asociacion-logo img {
+        width: 140px; /* Logo un poco más pequeño en celular */
+        margin-bottom: 20px;
+    }
+
+    .asociacion-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .btn-asociacion {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* --- CONTENEDOR PRINCIPAL --- */
+.contacto-wrapper {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr; /* 2 columnas en PC */
+    gap: 30px;
+    align-items: start;
+}
+
+/* --- TARJETAS DE INFO --- */
+.info-card {
+    display: flex;
+    gap: 15px;
+    background: rgba(51, 48, 48, 0.76);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    border-left: 4px solid #E9B44C;
+}
+
+.info-card i {
+    color: #E9B44C;
+    font-size: 1.4rem;
+}
+
+.info-card h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.info-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin: 0;
+}
+
+/* --- FORMULARIO --- */
+.contacto-form {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: #1a73e8;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px;
+    background: #000000a1;
+    border: 1px solid #535252;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 16px; /* IMPORTANTE: 16px evita el zoom automático en iPhones */
+}
+
+.btn-primary-naval {
+    width: 100%;
+    padding: 15px;
+    background: #E9B44C;
+    border: none;
+    color: #020b12;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* --- MEDIA QUERY PARA MÓVILES (iOS / Android) --- */
+@media (max-width: 850px) {
+    .contacto-grid {
+        grid-template-columns: 1fr; /* Una sola columna */
+    }
+
+    .contacto-info {
+        order: 1; /* La info arriba para contacto rápido */
+    }
+
+    .contacto-form {
+        order: 2; /* El formulario abajo */
+        padding: 20px;
+    }
+
+    .form-row {
+        display: flex;
+        flex-direction: column; /* Inputs nombre/correo uno bajo otro */
+    }
+
+    .page-intro h1 {
+        font-size: 2rem;
+    }
+}
+
+.mapa-box {
+    margin-top: 15px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #333;
+}
+
+/* Espacio entre icono y texto en todo el menú */
+.menu li a i {
+    margin-right: 8px;
+    color: inherit; /* Toma el color del texto (blanco o mostaza) */
+}
+
+/* El botón de Reservas con línea blanca */
+.nav-reserva-btn {
+    border: 1.5px solid #ffffff !important;
+    border-radius: 5px;
+    padding: 8px 18px !important;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.nav-reserva-btn:hover {
+    background: #ffffff;
+    color: #020b12 !important;
+}
+
+/* Visibilidad por tamaño de pantalla */
+.only-mobile, .menu li.only-mobile  { display: none; }
+
+@media (max-width: 768px) {
+    .navbar:has(.nav-panel.active) .logo-container {
+        display: none;
+    }
+}
+
+/* Logo en el panel móvil */
+.nav-logo-mobile {
+    padding: 40px 0px;
+}
+
+.nav-logo-mobile .nav-active::before {
+    content: none;
+}
+.menu-logo-img {
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .menu li.only-desktop { display: none !important; }
+    .only-mobile, .menu li.only-mobile  { display: block; }
+
+    .menu li:has(a.active),
+    .menu li:has(a.nav-active) {
+        background-color: #E9B44C;
+    }
+}
+
+/* Icono de la lupa sin margen derecho */
+.search-item a i {
+    margin-right: 0;
+}
+
+/* --- CONTENEDOR GALERÍA --- */
+.galeria-wrapper {
+    max-width: 1300px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* --- BOTONES DE FILTRO --- */
+.galeria-nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 40px;
+    flex-wrap: wrap; /* Importante para móviles */
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    background: transparent;
+    border: 1px solid rgba(233, 180, 76, 0.4);
+    color: #E9B44C;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.3s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+    background: #E9B44C;
+    color: #020b12;
+    border-color: #E9B44C;
+}
+
+/* --- GRID AUTODAPTABLE --- */
+.galeria-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.galeria-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 280px;
+    background: #01080e;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.galeria-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- EFECTO HOVER / TACTIL --- */
+.galeria-card:hover img {
+    transform: scale(1.15);
+}
+
+.card-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(2, 11, 18, 0.9), transparent);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: 0.4s ease;
+}
+
+.galeria-card:hover .card-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.card-caption span {
+    color: #E9B44C;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+/* --- ADAPTACIÓN PARA MÓVILES (iOS / Android) --- */
+@media (max-width: 768px) {
+    .galeria-masonry {
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); /* Una foto por fila */
+        gap: 15px;
+    }
+
+    .galeria-card {
+        height: 240px; /* Un poco más bajas para ver más contenido al hacer scroll */
+    }
+
+    .card-caption {
+        opacity: 1; /* En móviles el texto siempre es visible ya que no hay 'hover' */
+        transform: translateY(0);
+        background: linear-gradient(to top, rgba(2, 11, 18, 0.7), transparent);
+    }
+
+    .filter-btn {
+        width: 45%; /* Dos botones por fila en pantallas pequeñas */
+        font-size: 0.8rem;
+    }
+
+    /* Reducir el tamaño del submarino en celulares */
+    .sub-icon-original {
+        width: 200px; /* Ajusta este valor al tamaño que prefieras para celulares */
+    }
+
+    /* Opcional: Si deseas achicar todo el bloque de texto e iconos del preloader */
+    .loader-content {
+        transform: scale(0.85); /* Reduce proporcionalmente todo el contenido al 85% */
+    }
+}
+
+/* --- OPTIMIZACIÓN DE ANCHOS PARA EL PASE DE ABORDAJE EN MÓVILES --- */
+@media (max-width: 768px) {
+
+    /* Contenedor principal del resumen ocupará el ancho completo del celular sin desbordar */
+    .booking-summary {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 10px !important; /* Espaciado sutil con los bordes de la pantalla */
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Modificamos las dos tarjetas para que tengan un ancho óptimo y no se vean encogidas */
+    #ticket-actual,
+    .consolidado-card {
+        width: 100% !important; /* Aprovecha el 95% de la pantalla del celular */
+        max-width: 520px !important; /* Límite para pantallas medianas o tablets */
+        margin: 0 auto 25px auto !important; /* Centrado horizontal perfecto con separación abajo */
+        padding: 20px 12px !important; /* Relleno interno ideal para que los textos respiren */
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+
+    /* Aseguramos que los contenedores que generan la estructura del "Pase BAP Abtao" ocupen el 100% */
+    .ticket-header, 
+    .ticket-body,
+    .ticket-item,
+    #ticket-actual > div,
+    #lista-consolidada {
+        width: 120% !important;
+        display: flex !important;
+        flex-direction: column !important; /* Los títulos arriba, datos abajo */
+        align-items: center !important;
+        text-align: center !important;
+        gap: 10px !important;
+    }
+
+    /* Filas de información o filas de precios (si existen) */
+    .price-item, .info-row {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important; /* Apilar en vertical para que no se corten los textos largos */
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        gap: 5px !important;
+        padding: 8px 0 !important;
+        border-bottom: 1px dashed rgba(255, 255, 255, 0.15) !important; /* Línea discontinua estilo boleto */
+    }
+
+    /* Eliminar los puntos decorativos de escritorio que deforman la tarjeta en celulares */
+    .dot-line {
+        display: none !important;
+    }
+
+    /* Caja del total final centrada y expandida */
+    .total-final {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        margin-top: 15px !important;
+        gap: 5px !important;
+    }
+
+    /* Ajustar el botón para que sea cómodo de pulsar con el pulgar */
+    .btn-booking {
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 20px auto 0 auto !important;
+        display: block !important;
+        padding: 12px !important;
+    }
+}
+
+/* ----------------------------------------------------------------
+	Scrollbar
+-----------------------------------------------------------------*/
+  
+@media screen and (min-width: 768px) {
+	/* width */
+	::-webkit-scrollbar {
+	  width: 5px;
+	}
+  
+	/* Track */
+	::-webkit-scrollbar-track {
+	  background: #f1f1f1;
+	}
+  
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+	  background: rgb(168, 168, 168);
+	}
+  
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+	  background: rgb(168, 168, 168);
+	}
+}

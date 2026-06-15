@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservas - Museo Submarino Abtao</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="reservas-page">
+
+    <div id="main-header-placeholder"></div>
+
+    <main>
+        <section class="page-intro">
+            <div class="intro-content">
+                <h1>Reserva tu Inmersión</h1>
+                <p>Asegura tu lugar en la historia. Selecciona fecha y número de visitantes.</p>
+            </div>
+        </section>
+
+<section class="booking-container">
+    <div class="booking-grid">
+        
+        <div class="booking-form-card">
+            <div id="pases-dinamicos">
+                </div>
+            
+            <button type="button" class="btn-add-person" onclick="agregarNuevoPase()">
+                <i class="fas fa-plus-circle"></i> Agregar otra persona
+            </button>
+        </div>
+
+        <div class="booking-summary">
+            <h3>Pase de Abordaje Actual</h3>
+            <div id="ticket-actual">
+                </div>
+
+            <div class="consolidado-card">
+                <h4>Consolidado de Reserva</h4>
+                <div id="lista-consolidada">
+                    <p class="sutil-text">No hay personas registradas.</p>
+                </div>
+                <div class="total-final">
+                    <span>Total a Pagar:</span>
+                    <strong id="monto-final">S/ 0.00</strong>
+                </div>
+                <button class="btn-booking" onclick="finalizarReserva()">Confirmar Todo</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+    </main>
+
+    <div id="main-footer-placeholder"></div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia - Museo Submarino Abtao</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="main-header-placeholder"></div>
+
+    <main>
+<section class="page-intro separated-intro">
+    <div class="intro-content">
+        <h1>HISTORIA DEL MUSEO DE SITIO NAVAL</h1>
+        <p>SUBMARINO ABTAO</p>
+    </div>
+</section>
+
+<section class="history-container">
+    <div class="interactive-timeline">
+        
+        <div class="timeline-nav">
+            <button class="nav-dot active" onclick="showStep(0)">1953</button>
+            <button class="nav-dot" onclick="showStep(1)">1954</button>
+            <button class="nav-dot" onclick="showStep(2)">1957</button>
+            <button class="nav-dot" onclick="showStep(3)">2004</button>
+        </div>
+
+        <div class="history-viewer">
+            
+            <article class="history-step active">
+                <div class="step-info">
+                    <span class="step-number">1953</span>
+                    <h3>Lanzamiento</h3>
+                    <p>Fue lanzado al agua el 27 de Octubre de 1953 en el puerto de New London, Connecticut, U.S.A. y bautizado con el nombre de BAP “TIBURÓN”.</p>
+                </div>
+            </article>
+
+            <article class="history-step">
+                <div class="step-info">
+                    <span class="step-number">1954</span>
+                    <h3>Afirmado del Pabellón</h3>
+                    <p>El afirmado del Pabellón Nacional fue el 1ro de Marzo de 1954 y luego de un periodo de entrenamiento en los Estados Unidos navegó al Callao, incorporándose a la Armada Peruana el 20 de Julio de 1954. Desde entonces cumplió importantes misiones en la Flotilla de Submarinos.</p>
+                </div>
+            </article>
+
+            <article class="history-step">
+                <div class="step-info">
+                    <span class="step-number">1957</span>
+                    <h3>B.A.P. ABTAO</h3>
+                    <p>El 29 de Marzo de 1957 se le cambió de nombre a BAP “ABTAO” en homenaje al Combate Naval de Abtao del 7 de Febrero de 1866 frente a la costa de Abtao, Chile, librado entre la escuadra española y la vencedora escuadra aliada peruano-chilena, al mando del Capitán de Navío Manuel Villar.</p>
+                </div>
+            </article>
+
+            <article class="history-step">
+                <div class="step-info">
+                    <span class="step-number">2004</span>
+                    <h3>Apertura al Público</h3>
+                    <p>Desde el 28 de enero del 2004, fecha en que abrió sus escotillas al público, son más de UN MILLÓN los adultos y niños que lo han visitado. Solo conocían submarinos a través de las películas, y ahora pudieron visitar uno real y vivir una experiencia inolvidable.</p>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="timeline-controls">
+            <button class="btn-next" onclick="nextStep()">Siguiente Hito <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+</section>
+
+    </main>
+
+    <div id="main-footer-placeholder"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
