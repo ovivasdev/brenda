@@ -41,7 +41,7 @@
 
           <nav class="main-nav-asoc" id="main-nav-asoc">
               <ul class="nav-center">
-                  <li><a href="asociacion.html" class="active">Inicio</a></li>
+                  <li><a href="#inicio">Inicio</a></li>
                   <li><a href="#identidad">Identidad</a></li>
                   <li><a href="#junta">Junta Directiva</a></li>
                   <li><a href="#contacto">Contacto</a></li>
@@ -55,7 +55,8 @@
   </header>
 
     <style>
-        html, body { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 140px; }
+        body { scroll-behavior: smooth; }
 
         .main-header-asoc {
             position: fixed;
@@ -170,7 +171,7 @@
                 top: 110px;
                 left: 0;
                 width: 100%;
-                background: #071017;
+                background: #222;
                 flex-direction: column;
                 margin-left: 0;
                 padding: 0;
@@ -198,7 +199,7 @@
     </style>
 
   <main>
-    <section class="portada section-reveal" style="background-image: url('fotosub.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <section id="inicio" class="portada section-reveal" style="background-image: url('fotosub.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="oscurecer-fondo"></div>
         
         <div class="hero-container" style="position: relative; z-index: 2; text-align: center; padding: 180px 20px 100px 20px;">
@@ -387,11 +388,12 @@
         if (headerAsoc) {
             const toggleScrollAsoc = () => {
                 const scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY;
+                const menuIsOpen = document.querySelector('#main-nav-asoc')?.classList.contains('active');
                 if (scrollTop > 50) {
                     headerAsoc.classList.add('scrolled');
                     headerAsoc.style.setProperty('background-color', '#222', 'important');
                     headerAsoc.style.setProperty('background', '#222', 'important');
-                } else {
+                } else if (!menuIsOpen) {
                     headerAsoc.classList.remove('scrolled');
                     headerAsoc.style.setProperty('background-color', 'transparent', 'important');
                     headerAsoc.style.setProperty('background', 'transparent', 'important');
@@ -407,13 +409,37 @@
         const btnMenu = document.getElementById('menu-btn-asoc');
         const navMenu = document.getElementById('main-nav-asoc');
 
+        const closeMenu = () => {
+            navMenu.classList.remove('active');
+            const icon = btnMenu.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
+            const scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY;
+            if (scrollTop <= 50) {
+                headerAsoc.style.setProperty('background-color', 'transparent', 'important');
+                headerAsoc.style.setProperty('background', 'transparent', 'important');
+            }
+        };
+
         if (btnMenu && navMenu) {
             btnMenu.addEventListener('click', () => {
                 navMenu.classList.toggle('active');
+                const isOpen = navMenu.classList.contains('active');
                 const icon = btnMenu.querySelector('i');
                 if (icon) {
-                    icon.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+                    icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
                 }
+                const scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.scrollY;
+                if (isOpen) {
+                    headerAsoc.style.setProperty('background-color', '#222', 'important');
+                    headerAsoc.style.setProperty('background', '#222', 'important');
+                } else if (scrollTop <= 50) {
+                    headerAsoc.style.setProperty('background-color', 'transparent', 'important');
+                    headerAsoc.style.setProperty('background', 'transparent', 'important');
+                }
+            });
+
+            navMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', closeMenu);
             });
         }
     </script>
